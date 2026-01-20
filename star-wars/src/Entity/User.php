@@ -40,6 +40,8 @@ class User
     #[ORM\Column(length:100, nullable:false, unique:false, type:"json")]
     private array $roles = [];
 
+    #[ORM\OneToOne(targetEntity: Cart::class, mappedBy:"user", orphanRemoval: true)]
+    private $cart;
 
     /**
      * Get the value of username
@@ -117,6 +119,26 @@ class User
     public function setId($id)
     {
         $this->id = $id;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of cart
+     */ 
+    public function getCart()
+    {
+        return $this->cart;
+    }
+
+    /**
+     * Set the value of cart
+     *
+     * @return  self
+     */ 
+    public function setCart($cart)
+    {
+        $this->cart = $cart;
 
         return $this;
     }
