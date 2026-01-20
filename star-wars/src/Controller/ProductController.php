@@ -2,29 +2,29 @@
 
 namespace App\Controller;
 
-use App\Entity\User;
-use App\Form\UserType;
+use App\Entity\Product;
+use App\Form\ProductType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-class UserController extends AbstractController
+class ProductController extends AbstractController
 {
-    #[Route('/forms/new_User', name: 'new_user')]
+    #[Route('/forms/new_Product', name: 'new_product')]
     public function new(Request $request): Response 
     {
-        $user = new User();
+        $product = new Product();
 
-        $form = $this->createForm(UserType::class, $user);
+        $form = $this->createForm(ProductType::class, $product);
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()){
-            dump($user);
+            dump($product);
         }
 
-        return $this->render('forms/new_User.   html.twig', [
+        return $this->render('forms/new_Product.html.twig', [
             "form" => $form->createView()
         ]);
     }
