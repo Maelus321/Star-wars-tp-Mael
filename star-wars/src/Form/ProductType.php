@@ -3,7 +3,9 @@
 namespace App\Form;
 
 use App\Entity\Product;
+use App\Entity\Category;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\EnumType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -19,6 +21,10 @@ class ProductType extends AbstractType{
             ->add('price', MoneyType::class)
             ->add('description', TextType::class)
             ->add('image', TextType::class)
+            ->add('category',EnumType::class,[
+                'class' => Category::class,
+                'expanded' => false,
+                ])
             ;
     }
 

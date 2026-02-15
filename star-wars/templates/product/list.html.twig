@@ -1,0 +1,37 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    <h1>Tous les produits</h1>
+
+    {# Messages flash #}
+    {% for message in app.flashes('success') %}
+        <div style="color: green;">{{ message }}</div>
+    {% endfor %}
+
+    {# Lien vers le formulaire de création #}
+    <a href="{{ path('new_product') }}">Créer un nouveau produit</a>
+
+    {# Liste simple des produits #}
+    <ul>
+    {% for product in products %}
+        <li>
+            {{ product.name }} - {{ product.price }} €
+            
+            {# BOUTON MODIFIER #}
+            <a href="{{ path('product_edit', {'id': product.id}) }}" 
+               style="color: blue; margin-left: 10px;">
+               Modifier
+            </a>
+            
+            {# BOUTON SUPPRIMER #}
+            <a href="{{ path('product_delete', {'id': product.id}) }}" 
+               onclick="return confirm('Supprimer {{ product.name }} ?')"
+               style="color: red; margin-left: 10px;">
+               Supprimer
+            </a>
+        </li>
+    {% else %}
+        <li>Aucun produit trouvé.</li>
+    {% endfor %}
+    </ul>
+{% endblock %}
