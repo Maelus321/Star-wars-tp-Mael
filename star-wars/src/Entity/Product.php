@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 
 enum Category: string {
     case Ship = 'S';
@@ -58,6 +60,15 @@ class Product
 
     #[ORM\Column(type:"enum")]
     private Category $category;
+
+    // AJOUT DE LA RELATION AVEC CART
+    #[ORM\ManyToMany(targetEntity: Cart::class, mappedBy: "products")]
+    private Collection $carts;
+
+    public function __construct()
+    {
+        $this->carts = new ArrayCollection();
+    }
 
     /**
      * Get the value of image
@@ -176,6 +187,33 @@ class Product
     {
         $this->category = $category;
 
+        return $this;
+    }
+
+    // NOUVELLES METHODES POUR LA RELATION AVEC CART
+
+    /**
+     * Get the value of carts
+     */ 
+    public function getCarts(): Collection
+    {
+        return $this->carts;
+    }
+
+    public function addCart(Cart $cart): self
+    {
+        if (!$this->carts->contains($cart)) {
+            $this->carts->add($cart);
+            $cart->addProduct($this); // Synchronisation
+        }
+        return $this;
+    }
+
+    public function removeCart(Cart $cart): self
+    {
+        if ($this->carts->removeElement($cart)) {
+            $cart->removeProduct($this); // Synchronisation
+        }
         return $this;
     }
 }

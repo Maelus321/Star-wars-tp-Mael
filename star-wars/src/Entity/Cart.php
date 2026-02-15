@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -14,35 +15,29 @@ class Cart
     private int $id;
 
     #[ORM\OneToOne(targetEntity: User::class, inversedBy: "cart")]
-    private User $user;
+    private ?User $user = null; // Rendre nullable
 
-    #[ORM\ManyToMany(targetEntity: Product::class, mappedBy: "carts")]
+    #[ORM\ManyToMany(targetEntity: Product::class, inversedBy: "carts")]
+    #[ORM\JoinTable(name: "cart_product")]
     private Collection $products;
+
+    public function __construct()
+    {
+        $this->products = new ArrayCollection(); // INITIALISATION IMPORTANTE !
+    }
 
     /**
      * Get the value of id
      */ 
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }
 
     /**
-     * Set the value of id
-     *
-     * @return  self
-     */ 
-    public function setId($id)
-    {
-        $this->id = $id;
-
-        return $this;
-    }
-
-    /**
      * Get the value of user
      */ 
-    public function getUser()
+    public function getUser(): ?User
     {
         return $this->user;
     }
@@ -52,10 +47,9 @@ class Cart
      *
      * @return  self
      */ 
-    public function setUser($user)
+    public function setUser(?User $user): self
     {
         $this->user = $user;
-
         return $this;
     }
 
@@ -67,24 +61,17 @@ class Cart
         return $this->products;
     }
 
-    public function addProduct(Product $product)
+    public function addProduct(Product $product): self
     {
         if (!$this->products->contains($product)) {
             $this->products->add($product);
-            $product->setCart($this);
         }
         return $this;
     }
 
-    public function removeProduct(Product $product): static
+    public function removeProduct(Product $product): self
     {
-        if ($this->products->removeElement($product)) {
-            if ($product->getCart() === $this) {
-                $product->setCart(null);
-            }
-        }
+        $this->products->removeElement($product);
         return $this;
     }
 }
-
-
