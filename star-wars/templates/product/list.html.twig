@@ -9,29 +9,74 @@
     {% endfor %}
 
     {# Lien vers le formulaire de création #}
-    <a href="{{ path('new_product') }}">Créer un nouveau produit</a>
+    {% if is_granted('ROLE_ADMIN') %}
+        <a href="{{ path('new_product') }}">Créer un nouveau produit</a>
+    {% endif %}
+    
 
     {# Liste simple des produits #}
-    <ul>
-    {% for product in products %}
-        <li>
-            {{ product.name }} - {{ product.price }} €
-            
-            {# BOUTON MODIFIER #}
-            <a href="{{ path('product_edit', {'id': product.id}) }}" 
-               style="color: blue; margin-left: 10px;">
-               Modifier
-            </a>
-            
-            {# BOUTON SUPPRIMER #}
-            <a href="{{ path('product_delete', {'id': product.id}) }}" 
-               onclick="return confirm('Supprimer {{ product.name }} ?')"
-               style="color: red; margin-left: 10px;">
-               Supprimer
-            </a>
-        </li>
-    {% else %}
-        <li>Aucun produit trouvé.</li>
-    {% endfor %}
-    </ul>
+    <div class="products-grid">
+        {% for product in products %}
+            <div class="product-card" ><a href="{{ path('product_show', {'id': product.id}) }}">
+                {# Image du produit #}
+                <div class="product-image">
+                    {% if product.image %}
+                        <img 
+                             alt="{{ product.name }}">
+                    {% else %}
+                        <div class="no-image">
+                            <span>Aucune image</span>
+                        </div>
+                    {% endif %}
+                </div>
+
+                {# Contenu de la carte #}
+                <div class="product-content">
+                    {# Catégorie #}
+                    {% if product.category %}
+                        <span class="product-category">
+                            {{ product.category.name }}
+                        </span>
+                    {% endif %}
+
+                    {# Nom et prix #}
+                    <h3 class="product-title">{{ product.name }}</h3>
+                    <div class="product-price">{{ product.price|number_format(2, ',', ' ') }} €</div>
+
+                    {# Description (tronquée) #}
+                    {% if product.description %}
+                        <p class="product-description">
+                            {{ product.description|length > 100 ? product.description|slice(0, 100) ~ '...' : product.description }}
+                        </p>
+                    {% endif %}
+
+                    {# Boutons d'action #}
+                    <div class="product-actions">
+
+                        {# Actions admin #}
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <div class="admin-actions">
+                                <a href="{{ path('product_edit', {'id': product.id}) }}" 
+                                   class="btn-edit" 
+                                   title="Modifier">
+                                    ✏️
+                                </a>
+                                <a href="{{ path('product_delete', {'id': product.id}) }}" 
+                                   class="btn-delete" 
+                                   onclick="return confirm('Voulez-vous vraiment supprimer {{ product.name }} ?')"
+                                   title="Supprimer">
+                                    🗑️
+                                </a>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+                </a>
+            </div>
+        {% else %}
+            <div class="empty-state">
+                <p>Aucun produit trouvé.</p>
+            </div>
+        {% endfor %}
+    </div>
 {% endblock %}

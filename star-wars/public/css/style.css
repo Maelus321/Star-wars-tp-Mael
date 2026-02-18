@@ -1,0 +1,186 @@
+html{
+    background-color: #101026;
+    color: white;
+    text-decoration: none;
+}
+
+.top-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 70px;
+    background-color: #001278;
+    color: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 30px;
+    box-sizing: border-box;
+
+    z-index: 1000;
+
+
+}
+
+/* CONTENEUR PRINCIPAL */
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+    padding: 40px 20px;
+
+}
+
+/* CARTE */
+.product-card {
+    width: 300px;
+    background: #313178;
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    overflow: hidden;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.product-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 16px 35px rgba(0,0,0,0.15);
+}
+
+/* IMAGE */
+.product-image {
+    width: 100%;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.no-image {
+    font-size: 14px;
+}
+
+/* CONTENU */
+.product-content {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    text-decoration: none;
+    color:white;
+    border-bottom: none;
+}
+
+/* CATEGORIE */
+.product-category {
+    font-size: 12px;
+    font-weight: bold;
+    color: #0052cc;
+    background: #e6eeff;
+    padding: 4px 10px;
+    border-radius: 999px;
+    margin-bottom: 10px;
+    width: fit-content;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+/* TITRE */
+.product-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+/* PRIX */
+.product-price {
+    font-size: 22px;
+    font-weight: bold;
+    color: #00a86b;
+    margin-bottom: 10px;
+    border-bottom: none;
+    text-decoration: none;
+}
+
+/* DESCRIPTION */
+.product-description {
+    font-size: 14px;
+    margin-bottom: 18px;
+    flex-grow: 1;
+}
+
+/* BOUTONS */
+.product-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* BOUTON PRINCIPAL */
+.btn {
+    padding: 8px 14px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: 0.2s;
+    border-bottom: none;
+}
+
+.btn-primary {
+    background: #0052cc;
+    color: white;
+}
+
+.btn-primary:hover {
+    background: #003d99;
+}
+
+/* ACTIONS ADMIN */
+.admin-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.btn-edit,
+.btn-delete {
+    text-decoration: none;
+    font-size: 16px;
+    padding: 6px 8px;
+    border-radius: 6px;
+    transition: 0.2s;
+}
+
+.btn-edit {
+    background: #fff3cd;
+}
+
+.btn-edit:hover {
+    background: #ffe08a;
+}
+
+.btn-delete {
+    background: #f8d7da;
+}
+
+.btn-delete:hover {
+    background: #f1aeb5;
+}
+
+/* ETAT VIDE */
+.empty-state {
+    width: 100%;
+    text-align: center;
+    font-size: 18px;
+    padding: 40px;
+}

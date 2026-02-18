@@ -1,0 +1,44 @@
+
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ product.name }}{% endblock %}
+
+{% block stylesheets %}
+        <link rel="stylesheet" href="/css/product.css">
+        <link rel="stylesheet" href="/css/style.css">
+        {% endblock %}
+
+
+{% block body %}
+<div class="product-container">
+
+    <div class="product-image">
+        <img src="https://via.placeholder.com/400" alt="Image du produit">
+    </div>
+
+    <div class="product-info">
+
+        <h1 class="product-name">{{ product.name }}</h1>
+
+        <p class="product-description">
+            {{ product.description }}
+        </p>
+
+        <p class="product-price">{{ product.price }}€</p>
+
+        <div class="product-buttons">
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+            <button class="btn buy">Acheter</button>
+            {% endif %}
+            {% if is_granted('ROLE_ADMIN') %}
+            <button class="btn edit"><a href="{{ path('product_edit', {'id': product.id}) }}">Modifier</a></button>
+            {% endif %}
+            {% if is_granted('ROLE_ADMIN') %}
+            <button class="btn delete"><a href="{{ path('product_delete', {'id': product.id}) }}">Supprimer</a></button>
+            {% endif %}
+        </div>
+
+    </div>
+
+</div>  
+{% endblock %}

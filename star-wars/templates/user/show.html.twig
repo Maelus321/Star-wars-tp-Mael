@@ -16,5 +16,7 @@
     </p>
 
     <a href="{{ path('user_edit', {'id': user.id}) }}">Modifier</a>
+    {% if is_granted('ROLE_ADMIN') %}
     <a href="{{ path('user_index') }}">← Retour à la liste</a>
+    {% endif %}
 {% endblock %}

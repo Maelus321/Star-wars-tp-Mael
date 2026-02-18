@@ -86,6 +86,13 @@ public function edit(Request $request, Product $product, EntityManagerInterface 
         'product' => $product
     ]);
 }
+#[Route('/product/{id}', name: 'product_show', requirements: ['id' => '\d+'])]
+    public function show(Product $product): Response
+    {
+        return $this->render('product/show.html.twig', [
+            'product' => $product,
+        ]);
+    }
 
 }
 
