@@ -28,7 +28,10 @@
 
         <div class="product-buttons">
         {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-            <button class="btn buy">Acheter</button>
+            <form action="{{ path('cart_add', {'id': product.id}) }}" method="post" style="display: inline;" onsubmit="return confirm('Ajouter au panier ?')">
+    <input type="hidden" name="_token" value="{{ csrf_token('add-to-cart-' ~ product.id) }}">
+    <button type="submit" class="btn buy">Acheter</button>
+</form>
             {% endif %}
             {% if is_granted('ROLE_ADMIN') %}
             <button class="btn edit"><a href="{{ path('product_edit', {'id': product.id}) }}">Modifier</a></button>

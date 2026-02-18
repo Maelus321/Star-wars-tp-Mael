@@ -23,7 +23,7 @@
             </div>
             <div class="nav-buttons">
             {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                <button> <a href="{{ path('user_show', {'id': app.user.id}) }}">My account</a></button>
+                <button> <a href="{{ path('user_show', {'id': app.user.id}) }}">My account/Cart</a></button>
                 <button><a href="{{ path('logout') }}">Logout</a></button>
             {% endif %}
             {% if not is_granted('IS_AUTHENTICATED_FULLY') %}
