@@ -27,7 +27,6 @@ button{
 }
 
 .top-bar button{
-
     background: none;
     font-size: 14px;
     font-weight: 500;
@@ -46,16 +45,13 @@ a {
     color:white;
 }
 
-/* CONTENEUR PRINCIPAL */
 .products-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 30px;
     padding: 40px 20px;
-
 }
 
-/* CARTE */
 .product-card {
     width: 300px;
     background: #111111;
@@ -75,7 +71,6 @@ a {
     box-shadow: 0 16px 35px rgba(0,0,0,0.15);
 }
 
-/* IMAGE */
 .product-image {
     width: 100%;
     height: 200px;
@@ -94,7 +89,6 @@ a {
     font-size: 14px;
 }
 
-/* CONTENU */
 .product-content {
     padding: 20px;
     display: flex;
@@ -105,7 +99,6 @@ a {
     border-bottom: none;
 }
 
-/* CATEGORIE */
 .product-category {
     font-size: 12px;
     font-weight: bold;
@@ -119,14 +112,12 @@ a {
     border-bottom: none;
 }
 
-/* TITRE */
 .product-title {
     font-size: 18px;
     font-weight: 600;
     margin-bottom: 8px;
 }
 
-/* PRIX */
 .product-price {
     font-size: 22px;
     font-weight: bold;
@@ -136,21 +127,18 @@ a {
     text-decoration: none;
 }
 
-/* DESCRIPTION */
 .product-description {
     font-size: 14px;
     margin-bottom: 18px;
     flex-grow: 1;
 }
 
-/* BOUTONS */
 .product-actions {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-/* BOUTON PRINCIPAL */
 .btn {
     padding: 8px 14px;
     border-radius: 8px;
@@ -170,7 +158,6 @@ a {
     background: #003d99;
 }
 
-/* ACTIONS ADMIN */
 .admin-actions {
     display: flex;
     gap: 8px;
@@ -201,14 +188,12 @@ a {
     background: #f1aeb5;
 }
 
-/* ETAT VIDE */
 .empty-state {
     width: 100%;
     text-align: center;
     font-size: 18px;
     padding: 40px;
 }
-
 
 .add-button{
     text-decoration: none;
@@ -218,15 +203,12 @@ a {
     transition: 0.2s;
     background: #baf1ae;
     margin-left: 20px;
-
 }
 
-/* Ajoute ceci à la fin de ton fichier CSS */
 .hidden {
     display: none !important;
 }
 
-/* Style pour la surbrillance de recherche */
 .product-title mark {
     background-color: yellow;
     color: black;
@@ -234,7 +216,6 @@ a {
     padding: 0 2px;
 }
 
-/* Style pour le bouton de réinitialisation */
 .reset-filters-btn {
     background: yellow;
     color: black;
@@ -250,7 +231,6 @@ a {
     background: #ffd700;
 }
 
-/* Animation lors du filtrage */
 .product-card {
     transition: 
         opacity 0.3s ease,
@@ -267,7 +247,6 @@ a {
     transform: scale(1);
 }
 
-/* CONTENEUR DES FILTRES */
 .filters {
     display: flex;
     justify-content: center;
@@ -277,7 +256,6 @@ a {
     flex-wrap: wrap;
 }
 
-/* SELECT FILTRE */
 .type-select {
     background: #111;
     color: yellow;
@@ -299,7 +277,6 @@ a {
     box-shadow: 0 0 12px rgba(255, 255, 0, 0.6);
 }
 
-/* BARRE DE RECHERCHE */
 .search-bar {
     background: #111;
     color: white;
@@ -321,9 +298,6 @@ a {
     border-color: #ffd700;
 }
 
-
-/* ===== PAGE PRODUIT ===== */
-
 .product-container {
     display: flex;
     align-items: flex-start;
@@ -336,7 +310,6 @@ a {
     background: black;
 }
 
-/* IMAGE PRODUIT */
 .product-container .product-image {
     width: 450px;
     height: 450px;
@@ -359,7 +332,6 @@ a {
     transform: scale(1.05);
 }
 
-/* INFOS PRODUIT */
 .product-info {
     max-width: 500px;
     display: flex;
@@ -367,28 +339,24 @@ a {
     gap: 20px;
 }
 
-/* NOM */
 .product-name {
     font-size: 36px;
     font-weight: 700;
     color: yellow;
 }
 
-/* DESCRIPTION */
 .product-info .product-description {
     font-size: 16px;
     line-height: 1.6;
     color: #ccc;
 }
 
-/* PRIX */
 .product-info .product-price {
     font-size: 28px;
     font-weight: bold;
     color: #00ff88;
 }
 
-/* BOUTONS */
 .product-buttons {
     display: flex;
     gap: 15px;
@@ -413,7 +381,6 @@ a {
     box-shadow: 0 6px 20px rgba(255, 255, 0, 0.3);
 }
 
-/* Bouton acheter */
 .product-buttons .buy {
     background: yellow;
     color: black;
@@ -424,7 +391,6 @@ a {
     background: #ffd700;
 }
 
-/* Responsive */
 @media (max-width: 900px) {
     .product-container {
         flex-direction: column;
@@ -450,8 +416,6 @@ a {
     flex: 1;
     min-width: 0;
 }
-
-/* ===== PAGE FORMULAIRE ADMIN ===== */
 
 .form-page {
     display: flex;
@@ -531,8 +495,6 @@ a {
     box-shadow: 0 8px 20px rgba(255, 255, 0, 0.3);
 }
 
-/* ===== ALERT LOGIN ===== */
-
 .form-alert {
     background: #2a0000;
     border: 1px solid red;
@@ -545,9 +507,6 @@ a {
     width: 100%;
     
 }
-
-
-/* ===== PAGE PROFIL ===== */
 
 .profile-page {
     max-width: 1000px;
@@ -587,8 +546,6 @@ a {
     background: #333;
     color: #aaa;
 }
-
-/* ===== PANIER ===== */
 
 .section-title {
     color: yellow;
@@ -637,8 +594,6 @@ a {
     color: white;
 }
 
-/* ===== BOUTONS ===== */
-
 .profile-actions,
 .cart-actions {
     margin-top: 30px;
@@ -674,8 +629,6 @@ a {
     color: black;
 }
 
-/* ===== ALERT ===== */
-
 .profile-alert {
     background: #111;
     border: 1px solid yellow;
@@ -688,9 +641,6 @@ a {
     color: yellow;
     font-weight: bold;
 }
-
-
-/* ===== FORMULAIRE PRODUIT ===== */
 
 .form-page {
     display: flex;
@@ -769,7 +719,6 @@ a {
     transform: translateY(-2px);
     box-shadow: 0 8px 20px rgba(255, 255, 0, 0.3);
 }
-/* ===== FORMULAIRE MODIFICATION PRODUIT ===== */
 
 .input-with-symbol {
     position: relative;
@@ -864,7 +813,6 @@ a {
     box-shadow: 0 8px 20px rgba(255, 255, 0, 0.3);
 }
 
-/* Bouton retour liste */
 .form-actions {
     margin-top: 20px;
     text-align: center;
@@ -887,7 +835,6 @@ a {
     transform: translateY(-2px);
     box-shadow: 0 8px 20px rgba(255, 255, 0, 0.3);
 }
-/* ===== FORMULAIRE UTILISATEUR ===== */
 
 .form-page {
     display: flex;
@@ -967,7 +914,6 @@ a {
     box-shadow: 0 8px 20px rgba(255, 255, 0, 0.3);
 }
 
-/* Bouton supprimer */
 .delete-button {
     background: #330000;
     color: #ff4d4d;
@@ -978,7 +924,6 @@ a {
     color: white;
 }
 
-/* Liens secondaires */
 .form-actions {
     margin-top: 20px;
     display: flex;
@@ -1012,8 +957,6 @@ a {
     background: yellow;
     color: black;
 }
-
-/* ===== LISTE UTILISATEURS ===== */
 
 .list-page {
     padding: 140px 20px 60px 20px;
@@ -1132,35 +1075,30 @@ a {
 .text-center {
     text-align: center;
 }
-/* ===== Ajustements tableau utilisateurs ===== */
 
-/* Limite la largeur du tableau et centre la table */
 .table-responsive {
     overflow-x: auto;
-    max-width: 900px;   /* réduit la largeur maximale */
-    margin: 0 auto;     /* centre horizontalement */
+    max-width: 900px;
+    margin: 0 auto;
 }
 
-/* Aligne verticalement tous les boutons/action du tableau */
 .table-actions {
     display: flex;
     gap: 10px;
     flex-wrap: wrap;
-    align-items: center;    /* aligne le bouton Supprimer avec les autres */
+    align-items: center;
 }
 
-/* Forcer les boutons inline à être alignés */
 .inline-form {
     display: flex;
     margin: 0;
 }
 
 .inline-form .form-button.delete-button {
-    margin: 0;            /* supprime les décalages verticaux */
-    height: 32px;         /* même hauteur que les autres boutons */
+    margin: 0;
+    height: 32px;
     padding: 6px 10px;
 }
-/* ===== ANIMATION SIMPLE ===== */
 
 .product-card {
     transition: all 0.3s ease;
@@ -1170,3 +1108,4 @@ a {
     transform: scale(1.05);
     box-shadow: 0 0 30px rgba(255, 255, 0, 0.5);
 }
+
