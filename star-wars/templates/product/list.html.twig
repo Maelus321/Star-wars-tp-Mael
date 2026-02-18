@@ -1,82 +1,95 @@
 {% extends "base.html.twig" %}
 
 {% block body %}
-    <h1>Tous les produits</h1>
+    <div class="container">
+        <h1>Tous les produits</h1>
 
-    {# Messages flash #}
-    {% for message in app.flashes('success') %}
-        <div style="color: green;">{{ message }}</div>
-    {% endfor %}
+        <div class="filters">
+            <select id="typeFilter" class="type-select">
+                <option value="all">Tous les types</option>
+                <option value="Ship">Ship</option>
+                <option value="Droid">Droid</option>
+                <option value="Vehicle">Vehicle</option>
+                <option value="Weapon">Weapon</option>
+                <option value="Kyber">Kyber Crystal</option>
+            </select>
+            
+            <input 
+                type="text" 
+                id="searchInput" 
+                placeholder="Rechercher par nom..."
+                class="search-bar"
+            >
+        </div>
 
-    {# Lien vers le formulaire de création #}
-    {% if is_granted('ROLE_ADMIN') %}
-        <a href="{{ path('new_product') }}">Créer un nouveau produit</a>
-    {% endif %}
-    
+        {# Lien vers le formulaire de création #}
+        {% if is_granted('ROLE_ADMIN') %}
+            <a class="add-button" href="{{ path('new_product') }}">➕</a>
+        {% endif %}
 
-    {# Liste simple des produits #}
-    <div class="products-grid">
-        {% for product in products %}
-            <div class="product-card" ><a href="{{ path('product_show', {'id': product.id}) }}">
-                {# Image du produit #}
-                <div class="product-image">
-                    {% if product.image %}
-                        <img 
-                             alt="{{ product.name }}">
-                    {% else %}
-                        <div class="no-image">
-                            <span>Aucune image</span>
+        {# Grille des produits #}
+        <div class="products-grid" id="productsGrid">
+            {% for product in products %}
+                <div class="product-card" 
+                     data-product-id="{{ product.id }}"
+                     data-product-name="{{ product.name|lower }}"
+                     data-product-category="{{ product.category ? product.category.name|lower : '' }}">
+                    <a href="{{ path('product_show', {'id': product.id}) }}">
+                        {# Image du produit #}
+                        <div class="product-image">
+                            <img src="{{ product.image }}" alt="{{ product.name }}">
                         </div>
-                    {% endif %}
-                </div>
 
-                {# Contenu de la carte #}
-                <div class="product-content">
-                    {# Catégorie #}
-                    {% if product.category %}
-                        <span class="product-category">
-                            {{ product.category.name }}
-                        </span>
-                    {% endif %}
+                        {# Contenu de la carte #}
+                        <div class="product-content">
+                            {# Catégorie #}
+                            {% if product.category %}
+                                <span class="product-category">
+                                    {{ product.category.name }}
+                                </span>
+                            {% endif %}
 
-                    {# Nom et prix #}
-                    <h3 class="product-title">{{ product.name }}</h3>
-                    <div class="product-price">{{ product.price|number_format(2, ',', ' ') }} €</div>
+                            {# Nom et prix #}
+                            <h3 class="product-title">{{ product.name }}</h3>
+                            <div class="product-price">{{ product.price|number_format(2, ',', ' ') }} €</div>
 
-                    {# Description (tronquée) #}
-                    {% if product.description %}
-                        <p class="product-description">
-                            {{ product.description|length > 100 ? product.description|slice(0, 100) ~ '...' : product.description }}
-                        </p>
-                    {% endif %}
+                            {# Description (tronquée) #}
+                            {% if product.description %}
+                                <p class="product-description">
+                                    {{ product.description|length > 100 ? product.description|slice(0, 100) ~ '...' : product.description }}
+                                </p>
+                            {% endif %}
 
-                    {# Boutons d'action #}
-                    <div class="product-actions">
-
-                        {# Actions admin #}
-                        {% if is_granted('ROLE_ADMIN') %}
-                            <div class="admin-actions">
-                                <a href="{{ path('product_edit', {'id': product.id}) }}" 
-                                   class="btn-edit" 
-                                   title="Modifier">
-                                    ✏️
-                                </a>
-                                <a href="{{ path('product_delete', {'id': product.id}) }}" 
-                                   class="btn-delete" 
-                                   onclick="return confirm('Voulez-vous vraiment supprimer {{ product.name }} ?')"
-                                   title="Supprimer">
-                                    🗑️
-                                </a>
+                            {# Boutons d'action #}
+                            <div class="product-actions">
+                                {% if is_granted('ROLE_ADMIN') %}
+                                    <div class="admin-actions">
+                                        <a href="{{ path('product_edit', {'id': product.id}) }}" 
+                                           class="btn-edit" 
+                                           title="Modifier">
+                                            ✏️
+                                        </a>
+                                        <a href="{{ path('product_delete', {'id': product.id}) }}" 
+                                           class="btn-delete" 
+                                           onclick="return confirm('Voulez-vous vraiment supprimer {{ product.name }} ?')"
+                                           title="Supprimer">
+                                            🗑️
+                                        </a>
+                                    </div>
+                                {% endif %}
                             </div>
-                        {% endif %}
-                    </div>
+                        </div>
+                    </a>
                 </div>
-                </a>
-            </div>
-        {% else %}
-            <div class="empty-state">
-                <p>Aucun produit trouvé.</p>
-            </div>
-        {% endfor %}
+            {% else %}
+                <div class="empty-state">
+                    <p>Aucun produit trouvé.</p>
+                </div>
+            {% endfor %}
+        </div>
     </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="/js/product-filter.js"></script>
 {% endblock %}

@@ -60,7 +60,7 @@ class UserController extends AbstractController
 
             $this->addFlash('success', 'Utilisateur créé avec succès.');
 
-            return $this->redirectToRoute('user_index');
+            return $this->redirectToRoute('product_list');
         }
 
         return $this->render('user/new.html.twig', [

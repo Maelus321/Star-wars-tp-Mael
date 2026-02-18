@@ -18,7 +18,9 @@ class ProductType extends AbstractType{
 
         $builder
             ->add('name', TextType::class)
-            ->add('price', MoneyType::class)
+            ->add('price', MoneyType::class,[
+                'currency' => false,
+            ])
             ->add('description', TextType::class)
             ->add('image', TextType::class)
             ->add('category',EnumType::class,[

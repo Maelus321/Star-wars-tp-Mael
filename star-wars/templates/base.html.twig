@@ -15,13 +15,12 @@
 
         <div class="top-bar">
             <div class="logo-title">
-                <p>Star-Wars shop</p>
+                <p>STAR-WARS SHOP</p>
             </div>
+
+           
             <div class="nav-buttons">
-            
-                <button><a href="{{ path('product_list') }}">Produits</a></button>
-            </div>
-            <div class="nav-buttons">
+            <button><a href="{{ path('product_list') }}">Produits</a></button>
             {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                 <button> <a href="{{ path('user_show', {'id': app.user.id}) }}">My account/Cart</a></button>
                 <button><a href="{{ path('logout') }}">Logout</a></button>
