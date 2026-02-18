@@ -30,14 +30,14 @@
         {% if is_granted('IS_AUTHENTICATED_FULLY') %}
             <form action="{{ path('cart_add', {'id': product.id}) }}" method="post" style="display: inline;" onsubmit="return confirm('Ajouter au panier ?')">
     <input type="hidden" name="_token" value="{{ csrf_token('add-to-cart-' ~ product.id) }}">
-    <button type="submit" class="btn buy">Acheter</button>
+    <button type="submit" class="btn buy">Buy</button>
 </form>
             {% endif %}
             {% if is_granted('ROLE_ADMIN') %}
-            <button class="btn edit"><a href="{{ path('product_edit', {'id': product.id}) }}">Modifier</a></button>
+            <button class="btn edit"><a href="{{ path('product_edit', {'id': product.id}) }}">Modify</a></button>
             {% endif %}
             {% if is_granted('ROLE_ADMIN') %}
-            <button class="btn delete"><a href="{{ path('product_delete', {'id': product.id}) }}">Supprimer</a></button>
+            <button class="btn delete"><a href="{{ path('product_delete', {'id': product.id}) }}">Delete</a></button>
             {% endif %}
         </div>
 

@@ -7,21 +7,21 @@
 <div class="profile-page">
 
     <div class="profile-card">
-        <h1 class="profile-title">Profil de {{ user.username }}</h1>
+        <h1 class="profile-title">{{ user.username }}'s profile</h1>
 
         <div class="profile-info">
             <p><strong>ID :</strong> {{ user.id }}</p>
             <p><strong>Username :</strong> {{ user.username }}</p>
-            <p><strong>Rôles :</strong> {{ user.roles|join(', ') }}</p>
+            <p><strong>Role :</strong> {{ user.roles|join(', ') }}</p>
             <p>
-                <strong>Panier :</strong>
+                <strong>Cart :</strong>
                 {% if user.cart %}
                     <span class="profile-badge">
-                        Panier #{{ user.cart.id }} ({{ user.cart.products|length }} produits)
+                        CART #{{ user.cart.id }} ({{ user.cart.products|length }} products)
                     </span>
                 {% else %}
                     <span class="profile-badge empty">
-                        Pas de panier
+                        No cart
                     </span>
                 {% endif %}
             </p>
@@ -30,13 +30,13 @@
 
     {% if user.cart and user.cart.products|length > 0 %}
         <div class="cart-section">
-            <h2 class="section-title">Mon panier</h2>
+            <h2 class="section-title">My cart</h2>
 
             <table class="cart-table">
                 <thead>
                     <tr>
-                        <th>Nom</th>
-                        <th>Prix</th>
+                        <th>Name</th>
+                        <th>Price</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -49,7 +49,7 @@
                                 <form action="{{ path('cart_remove', {'id': product.id}) }}" method="post" onsubmit="return confirm('Retirer ce produit du panier ?')">
                                     <input type="hidden" name="_token" value="{{ csrf_token('remove-from-cart-' ~ product.id) }}">
                                     <button type="submit" class="cart-remove-btn">
-                                        Retirer
+                                        Remove
                                     </button>
                                 </form>
                             </td>
@@ -68,26 +68,26 @@
 
             <div class="cart-actions">
                 <a href="{{ path('product_list') }}" class="profile-button">
-                    Continuer mes achats
+                    Continue buying
                 </a>
             </div>
         </div>
 
     {% elseif user.cart %}
         <div class="profile-alert">
-            Votre panier est vide.
-            <a href="{{ path('product_list') }}">Continuer mes achats</a>
+            Your cart is empty
+            <a href="{{ path('product_list') }}">Continue buying</a>
         </div>
     {% endif %}
 
     <div class="profile-actions">
         <a href="{{ path('user_edit', {'id': user.id}) }}" class="profile-button">
-            Modifier mon profil
+            Modify my profile
         </a>
 
         {% if is_granted('ROLE_ADMIN') %}
             <a href="{{ path('user_index') }}" class="profile-button secondary">
-                ← Retour à la liste
+                Every users
             </a>
         {% endif %}
     </div>

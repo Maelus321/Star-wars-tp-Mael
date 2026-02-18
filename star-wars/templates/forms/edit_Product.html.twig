@@ -3,7 +3,7 @@
 {% block body %}
 <div class="form-page">
     <div class="form-card">
-        <h1 class="form-title">Modifier le produit : {{ product.name }}</h1>
+        <h1 class="form-title">Modify product : {{ product.name }}</h1>
 
         {{ form_start(form, {'attr': {'class': 'custom-form'}}) }}
 
@@ -45,7 +45,7 @@
         {{ form_end(form) }}
 
         <div class="form-actions">
-            <a href="{{ path('product_list') }}" class="profile-button secondary">← Retour à la liste</a>
+            <a href="{{ path('product_list') }}" class="profile-button secondary">Product list</a>
         </div>
     </div>
 </div>

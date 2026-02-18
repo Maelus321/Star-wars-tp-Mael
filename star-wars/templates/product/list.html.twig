@@ -2,11 +2,11 @@
 
 {% block body %}
     <div class="container">
-        <h1>Tous les produits</h1>
+        <h1>Every products</h1>
 
         <div class="filters">
             <select id="typeFilter" class="type-select">
-                <option value="all">Tous les types</option>
+                <option value="all">All</option>
                 <option value="Ship">Ship</option>
                 <option value="Droid">Droid</option>
                 <option value="Vehicle">Vehicle</option>
@@ -17,7 +17,7 @@
             <input 
                 type="text" 
                 id="searchInput" 
-                placeholder="Rechercher par nom..."
+                placeholder="Search by name..."
                 class="search-bar"
             >
         </div>
@@ -83,7 +83,7 @@
                 </div>
             {% else %}
                 <div class="empty-state">
-                    <p>Aucun produit trouvé.</p>
+                    <p>No products.</p>
                 </div>
             {% endfor %}
         </div>
